@@ -1,0 +1,19 @@
+Leetcode#9 回文数 easy
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        char str[100];
+        sprintf(str, "%d", x);
+        int len=strlen(str);
+        for(int i=0; i<len; i++)
+            if(str[i] != str[len-1-i])  return false;
+        return true;
+    }
+};
+
+// the size of str[] must be big enough
+// sprintf(str, "%d", num) can help us change the number to the string
+// sscanf(str, "%d", &num) can help us change the string to the number
+// if the type of the number is float, you can change "%d" to ".?f", ? depends on the pricision you need
+// strlen() can help us calculate the sum of numbers
