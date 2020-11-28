@@ -1,0 +1,61 @@
+vertor<int> nums(10,1)  //nums is a vector which contains ten elements, the value is 1
+vector<int> nums(demo)  //copy the centent of demo to the nums(vector)
+vector<int> nums(demo.begin(), demo.begin+3)  //copy the value of begin, the index is from 0 to 2
+
+nums.assign(demo.begin(), demo.begin+3) //the same as the last line
+nums.assign(4, 2) //4 elements, value=2
+nums.front()  //return the first num
+nums.back() //return the last num
+nums.clear()  //clear all the numbers
+nums.empty()  //judge the vector is empty or not
+nums.push_back(x) //insert "x" to the last of the vector
+nums.pop_back(x)  //delete "x" from the last of the vector
+nums.insert(nums.begin()+1, 10, 1)  //insert 10 elements whose value is 1 from nums[1] to nums[10]
+nums.insert(nums.begin()+1, demo+3, demo+6) //insert 3 elements from nums[1] to nums[3], which from demo[3] to demo[5]
+nums.erase(nums.begin()+1, nums.begin()+5)  //delete 4 elements from nums[1] to nums[4]
+nums.size() //return the length of the vector
+nums.capacity() //return the capacity of the vector
+nums.resize(10) //solid the length is 10
+nums.swap(demo) //swap the elements between nums and demo
+
+//SQ Insert
+vector<int> a;
+for(int i=0;i<10;i++)
+a.push_back(i);
+
+//from another vector Insert  
+int a[6]={1,2,3,4,5,6};
+vector<int> b；
+for(int i=1;i<=4;i++)
+b.push_back(a[i]);
+
+//from the present vector Insert
+int a[6]={1,2,3,4,5,6};
+vector<int> b;
+vector<int> c(a,a+4);
+for(vector<int>::iterator it=c.begin();it<c.end();it++)
+b.push_back(*it);
+
+//from the file Insert
+ifstream in("data.txt");
+vector<int> a;
+for(int i; in>>i)
+    a.push_back(i);
+
+//index Transverse
+int a[6]={1,2,3,4,5,6};
+vector<int> b(a,a+4);
+for(int i=0;i<=b.size()-1;i++)
+    cout<<b[i]<<" ";
+    
+//iterator Transverse
+int a[6]={1,2,3,4,5,6};
+vector<int> b(a,a+4);
+for(vector<int>::iterator it=b.begin();it!=b.end();it++)
+    cout<<*it<<" ";
+    
+#include<algorithm> 
+sort(a.begin(),a.end()) //sort the elements of the vector
+reverse(a.begin(),a.end())  //reverse the elements of the vecter
+copy(a.begin(),a.end(),b.begin()+1) //copy the elements of vector(a) to cover the vecter(b) from  b[1]
+find(a.begin(),a.end(),10)  //look for the value=10 in the vector
