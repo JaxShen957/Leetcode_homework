@@ -16,3 +16,29 @@ public:
 //firstly we calculate the size of the vector 
 //establish the "res" vector and insert all the value equal to "0"
 //two pointers tranverse
+
+
+class Solution {
+public:
+    vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+        int len = nums.size();
+        int arr[101];
+        int cnt = 0;
+        memset(arr, 0, sizeof(arr));
+        for(auto i : nums){
+            arr[i] ++;
+        }
+        for(int i=0; i<101; i++){
+            int temp = arr[i];
+            arr[i] = cnt;
+            cnt += temp;
+        }
+        vector<int> res;
+        for(int i : nums)
+            res.push_back(arr[i]);
+        return res;
+    }
+};
+
+// for(auto i : nums) can automatically sort and record the index and the quantity
+// for(int i : nums) can automatically match the number and push_back the quantity
