@@ -1,0 +1,14 @@
+Leetcode#1480. Running Sum of 1d Array easy
+
+class Solution {
+public:
+    vector<int> runningSum(vector<int>& nums) {
+        for(vector<int>::iterator it=nums.begin();it!=nums.end()-1;it++){
+            *(it+1)+=*(it);
+        }
+        return nums;
+    }
+};
+
+//remember to return nums
+//use STL Iterator, "it" is a pointer to walk from begin to the back, otherwise you need nums.size() to calculate the size of the vector
