@@ -119,3 +119,68 @@ public:
     }
 };
 //reverse-iteratot usage
+
+83. Remove Duplicates from Sorted List
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(!head || !head->next)
+            return head;
+        ListNode* p = head;
+        while(p->next!=NULL && p!=NULL)
+        {
+            if(p->val == p->next->val)
+            {   
+                ListNode *q;
+                q = p->next;
+                p->next = q->next;
+                delete q;
+            }
+            else 
+                p = p->next;
+        }
+        return head;
+    }
+};
+//In the process of "while", ensure p and p->next can exist
+
+5558. Merge In Between Linked Lists
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
+        ListNode *p = list1;
+        for(int i=0; i<a-1; i++){
+            p = p->next;
+        }
+        ListNode *res = p->next;
+        ListNode *temp;
+        for(int k=a; k<b; k++){
+            temp = res->next;
+            delete res;
+            res = temp;
+        }
+        p->next = list2;
+        while(p->next != NULL){
+            p = p->next;
+        }
+        p->next = res->next;
+        delete res;
+
+        return list1;
+    }
+};
+//remember the location whose index is (a-1)
+//delete the list whose index from (a) to (b-1) by order and remember the location (b)
+//link the node(a-1) and the head of list2, tranverse until the end of the list2
+//link the tail node of the list2 and node(b-1)->node, delete the node(b-1)
+//return list1
