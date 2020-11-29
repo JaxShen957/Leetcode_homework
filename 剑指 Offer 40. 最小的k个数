@@ -12,3 +12,30 @@ public:
 };
 
 
+class Solution {
+public:
+    vector<int> getLeastNumbers(vector<int>& arr, int k) {
+        priority_queue<int> max_Heap;
+        vector<int> ans;
+        if(arr.size()==0 || k==0)
+            return ans;
+        
+        for(int i =0;i<k;i++){
+            max_Heap.push(arr[i]); 
+        }
+        for(int i=k;i<arr.size();i++){
+            if(arr[i]<max_Heap.top()){
+                max_Heap.pop();
+                max_Heap.push(arr[i]);
+            }
+        }
+
+        while(!max_Heap.empty()){
+            ans.push_back(max_Heap.top());
+            max_Heap.pop();
+        }
+
+        return ans;
+    }
+};
+// left in the max_Heap is the solution(k numbers)
