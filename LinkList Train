@@ -1,0 +1,121 @@
+面试题 02.03. Delete Middle Node LCCI
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        ListNode *tmp;
+        tmp = node->next;
+        node->val = node->next->val;
+        node->next = node->next->next;
+        delete tmp;
+        tmp = NULL;
+    }
+};
+
+剑指 Offer 22. 链表中倒数第k个节点
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* getKthFromEnd(ListNode* head, int k) {
+        ListNode *p, *node;
+        p = node = head;
+        if(!p || k<=0)  return NULL;   
+        while(k--){
+            if(!p)  return NULL;
+            p = p->next;
+        }
+        while(p){
+            p = p->next;
+            node = node->next;
+        }
+        return node;
+    }
+};
+//快慢指针
+
+面试题 02.02. Kth Node From End of List LCCI
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int kthToLast(ListNode* head, int k) {
+        ListNode *p = head;
+        ListNode *node = head;
+        if(!p || k<=0)  return NULL;
+        while(k--){
+            if(!p)  return NULL;
+            p = p->next;
+        }
+        while(p){
+            p = p->next;
+            node = node->next;        
+        }
+        return node->val;
+    }
+};
+
+剑指 Offer 06. 从尾到头打印链表
+输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ //solution1  8ms
+class Solution {
+public:
+    vector<int> reversePrint(ListNode* head) {
+        ListNode *p;
+        p = head;
+        vector<int> demo;
+        while(p){
+            demo.push_back(p->val);
+            p = p->next;
+        }
+        reverse(demo.begin(), demo.end());
+        return demo;
+    }
+};
+//solution2 4ms
+class Solution {
+public:
+    vector<int> reversePrint(ListNode* head) {
+    const ListNode* node = head;
+    std::size_t count = 0;
+    while (node != nullptr) {
+        ++count;
+        node = node->next;
+    }
+    std::vector<int> nums(count);  // 预分配 count 个空间。
+    node = head;
+    for (auto i = nums.rbegin(); i != nums.rend(); ++i) {
+        *i = node->val;
+        node = node->next;
+    }
+    return nums;
+    }
+};
+//reverse-iteratot usage
