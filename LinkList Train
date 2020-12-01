@@ -345,5 +345,40 @@ public:
 //establish a guard node is very important
 //factor: ListNode *head = new ListNode;  cur = head;
 
+剑指 Offer 18. 删除链表的节点 LCOF
+class Solution {
+public:
+    ListNode* deleteNode(ListNode* head, int val) {
+        if (head->val == val) return head->next;
 
+        ListNode *prev = head;
+        ListNode *curr = head->next;
 
+        while (curr != nullptr && curr->val != val) { 
+            // 细节要注意这里curr必须不等于空，不然下面找next会错误。
+            // 另外不等于空的check要放到前面。
+            prev = curr;
+            curr = curr->next;
+        }
+ 
+        // 注意边界条件，如果curr为空表示没找到值为val的节点，这种情况我们应该跳过，否则会错误。
+        if (curr != nullptr) prev->next = curr->next; 
+
+        return head;
+    }
+};//双指针
+class Solution {
+public:
+    ListNode* deleteNode(ListNode* head, int val) {
+        if(head->val == val)    return head->next;
+        ListNode *front = new ListNode(-1);
+        front->next = head;
+        ListNode *p = front;
+        while(p->next->val!=val && p->next!=nullptr){
+            p = p->next;
+        }
+        if(p->next!=nullptr)
+            p->next = p->next->next;
+        return head;
+    }
+};//建立头结点再扫描
