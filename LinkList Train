@@ -318,4 +318,32 @@ public:
 };
 //it's not a good problem!!!
 
+//Leetcode#21. Merge Two Sorted Lists
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode *cur;
+        ListNode *head = new ListNode(-1);  //guard node
+        cur = head;
+        if(!l1 && !l2) return NULL;
+        while(l1!=nullptr && l2!=nullptr){
+            if(l1->val <= l2->val){
+                cur->next = l1;
+                l1 = l1->next;
+            }
+            else{
+                cur->next = l2;
+                l2 = l2->next;
+            }
+            cur = cur->next;
+        }
+        if(!l1)  cur->next = l2;
+        if(!l2)  cur->next = l1;
+        return head->next;
+    }
+};
+//establish a guard node is very important
+//factor: ListNode *head = new ListNode;  cur = head;
+
+
 
