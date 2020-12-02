@@ -402,3 +402,30 @@ public:
         return nullptr;
     }
 };
+
+面试题 02.05. 链表求和
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode *head = new ListNode(-1);
+        ListNode *p1=l1, *p2=l2, *p=head;
+        int sum=0, curr=0;
+        while(p1 || p2 || curr){
+            sum = 0;
+            if(p1){
+                sum += p1->val;
+                p1 = p1->next;
+            }
+            if(p2){
+                sum += p2->val;
+                p2 = p2->next;
+            }
+            sum += curr;
+            curr = sum/10;
+            ListNode *node = new ListNode(sum%10);
+            p->next = node;
+            p = p->next;
+        }
+        return head->next;      
+    }
+};
