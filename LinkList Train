@@ -429,3 +429,45 @@ public:
         return head->next;      
     }
 };
+
+Leetcode#19. Remove Nth Node From End of List
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode *dummy = new ListNode(-1, head);
+        ListNode *slow=dummy, *fast=head;
+        while(n--){
+            fast = fast->next;
+        }
+        while(fast!=nullptr){
+            slow = slow->next;
+            fast = fast->next;
+        }
+        if(slow->next == nullptr){
+            delete slow;
+        }
+        else{
+            slow->next = slow->next->next;
+        }
+        return dummy->next;
+    }
+};//快慢指针写法
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* dummy = new ListNode(-1, head);
+        stack<ListNode*>  tmp;
+        ListNode *p = dummy;
+        while(p!=nullptr){
+            tmp.push(p);
+            p = p->next;
+        }
+        for(int i=0; i<n; i++){
+            tmp.pop();
+        }
+        ListNode *cur = tmp.top();
+        cur->next = cur->next->next;
+        ListNode *ans = dummy->next;
+        return ans;
+    }
+};//栈的解法，设立头结点很重要
