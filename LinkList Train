@@ -471,3 +471,38 @@ public:
         return ans;
     }
 };//栈的解法，设立头结点很重要
+Leetcode#445. 两数相加 II
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        stack<ListNode*> arr1, arr2;
+        while(l1!=nullptr){
+            arr1.push(l1);
+            l1=l1->next;
+        }
+        while(l2!=nullptr){
+            arr2.push(l2);
+            l2=l2->next;
+        }
+        ListNode *head = nullptr;
+        ListNode *p = head;
+        int curr=0, sum=0;
+        while(!arr1.empty() || !arr2.empty() || curr){
+            sum = 0;
+            if(!arr1.empty()){
+                sum += arr1.top()->val;
+                arr1.pop();
+            }
+            if(!arr2.empty()){
+                sum += arr2.top()->val;
+                arr2.pop();
+            }
+            sum += curr;
+            curr = sum / 10;
+            ListNode *node = new ListNode(sum % 10);
+            node->next = p;
+            p = node;
+        }
+        return p;
+    }
+};//headnode = nullptr; 先用栈存储链表数值，LIFO，然后用头插法
