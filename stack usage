@@ -6,3 +6,26 @@ size()：返回栈中元素的个数。
 empty()：在栈中没有元素的情况下返回 true。
 emplace()：用传入的参数调用构造函数，在栈顶生成对象。
 swap(stack & other_stack)：将当前栈中的元素和参数中的元素交换。参数所包含元素的类型必须和当前栈的相同。对于 stack 对象有一个特例化的全局函数 swap() 可以使用。
+
+int main(){
+//定义一个空栈a
+stack<int> a;
+
+for(int i = 1; i <= 3; i++)
+    a.push(i);
+
+cout << "size of a is " << a.size()<< endl;
+cout << "element of  a is: " ;
+
+for(; a.size() > 0;){
+    // cout << a.pop() << " "; pop直接删除元素并没有返回，所以这种用法是错误的
+
+    cout << a.top() << " ";
+    a.pop();
+}
+
+cout <<endl;
+cout << "after pop all element in a,the size =  " << a.size()<< endl;
+cout << endl;
+return 0;
+}
