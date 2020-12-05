@@ -527,3 +527,106 @@ public:
     }
 };
 //设立头结点，跟单个次序交换一致
+
+Leetcode#142. 环形链表 II
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        if(!head || !head->next)    return nullptr;
+        ListNode *slow=head;
+        ListNode *fast=head;
+        ListNode *cur;
+        while(fast->next && fast->next->next){
+            fast=fast->next->next;
+            slow=slow->next;
+            if(fast==slow){ //确定环的存在性
+                cur=head;
+                while(cur!=slow){   //得到环的入口第一个结点 a=c+(k-1)*(b+c)
+                    cur=cur->next;
+                    slow=slow->next;
+                }
+                return cur;
+            }
+        }
+        return nullptr;
+    }
+};
+
+Leetcode#1290. 二进制链表转整数
+class Solution {
+public:
+    int getDecimalValue(ListNode* head) {
+        ListNode *p = head;
+        int cnt=1;
+        int sum=0;
+        while(p->next){
+            cnt *= 2;
+            p = p->next;
+        }
+        p = head;
+        while(p){
+            sum += cnt * p->val;
+            cnt /= 2;
+            p = p->next;
+        }
+        return sum;
+    }
+};
+class Solution {
+public:
+    int getDecimalValue(ListNode* head) {
+        ListNode* cur = head;
+        int ans = 0;
+        while (cur != nullptr) {
+            ans = ans * 2 + cur->val;
+            cur = cur->next;
+        }
+        return ans;
+    }
+};
+
+Leetcode#1019. 链表中的下一个更大节点
+class Solution {
+public:
+    vector<int> nextLargerNodes(ListNode* head) {
+        ListNode *slow = head, *fast = head;
+        vector<int> ans;
+        while(slow){
+            fast = slow;
+            while(fast){
+                if(fast->val > slow->val){
+                    ans.push_back(fast->val);
+                    break;
+                }
+                if(fast->next==nullptr && fast->val<=slow->val){
+                    ans.push_back(0);
+                }
+                fast = fast->next;
+            }
+            slow = slow->next;
+        }
+        return ans;
+    }
+};
+class Solution {
+public:
+    vector<int> nextLargerNodes(ListNode* head) {
+        vector<int> v;
+        ListNode *p = head;
+        while(p){
+            v.push_back(p->val);
+            p = p->next;
+        }
+        vector<int> ans(v.size());
+        stack<int> tmp;
+        for(int i=0; i<v.size(); i++){
+            while(!tmp.empty() && v[i]>v[tmp.top()]){
+                ans[tmp.top()] = v[i];
+                tmp.pop();
+            }
+            tmp.push(i);
+        }
+        return ans;
+    }
+};
+/单调栈解决，关键在于记录每个结点的下标
