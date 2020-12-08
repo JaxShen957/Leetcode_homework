@@ -1,3 +1,5 @@
+vector<vector<int>> name; //2d flexsible matrix
+
 vertor<int> nums(10,1)  //nums is a vector which contains ten elements, the value is 1
 vector<int> nums(demo)  //copy the centent of demo to the nums(vector)
 vector<int> nums(demo.begin(), demo.begin+3)  //copy the value of begin, the index is from 0 to 2
@@ -7,6 +9,7 @@ nums.assign(4, 2) //4 elements, value=2
 nums.front()  //return the first num
 nums.back() //return the last num
 nums.clear()  //clear all the numbers
+nums.erase(nums.begin()+i, nums.begin()+j)  //erase the elements between nums[i] and nums[j-1]
 nums.empty()  //judge the vector is empty or not
 nums.push_back(x) //insert "x" to the last of the vector
 nums.pop_back(x)  //delete "x" from the last of the vector
@@ -17,6 +20,9 @@ nums.size() //return the length of the vector
 nums.capacity() //return the capacity of the vector
 nums.resize(10) //solid the length is 10
 nums.swap(demo) //swap the elements between nums and demo
+
+vector<int>::iterator it;
+v[i] equal to *(v.begin()+i)
 
 //SQ Insert
 vector<int> a;
