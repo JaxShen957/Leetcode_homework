@@ -630,3 +630,30 @@ public:
     }
 };
 /单调栈解决，关键在于记录每个结点的下标
+
+Leetcode#61. Rotate List
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(!head || k==0)   return head;
+        ListNode* dummy = new ListNode(-1);
+        dummy->next = head;
+        ListNode* p = head;
+        int cnt=1;
+        while(p->next!=nullptr){
+            cnt++;
+            p = p->next;
+        }
+        p->next = head;
+        //记录头结点并让链表成环
+        int res = cnt - (k % cnt);
+        p = dummy;
+        while(res--){
+            p = p->next;
+        }
+        dummy->next = p->next;
+        p->next = nullptr;
+        //重新标记头结点
+        return dummy->next;
+    }
+};
