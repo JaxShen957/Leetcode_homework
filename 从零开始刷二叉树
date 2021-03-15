@@ -1,0 +1,24 @@
+226-->114-->116
+
+搞清楚当前root节点该做什么？根据函数定义递归调用子节点！
+
+226.翻转二叉树
+  1.前序遍历确定
+  2.约束条件root==null，返回null
+  3.root.left和root.right通过中介tmp交换
+  
+114.二叉树展开为链表
+  1.后序遍历确定
+  2.左子树拉平，右子树拉平
+  3.右子树通过中介tmp存储，左子树嫁接到右子树上，左子树置空
+  4.将右子树接到左子树的尾巴
+  5。约束条件root==null，结束方法return;
+  
+116.填充每个节点的下一个右侧节点指针
+  1.设置一个方法connectTwoNodes(Node n1, Node n2)
+  2.前序遍历确定
+  3.约束条件n1==null||n2==null，结束方法return;
+  4.n1.next = n2;
+  5.connectTwoNodes(n1.left, n1.right);
+    connectTwoNodes(n2.left, n2.right);
+    connectTwoNodes(n1.right, n2.left);
