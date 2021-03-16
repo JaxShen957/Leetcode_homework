@@ -1,4 +1,4 @@
-226-->114-->116
+226-->114-->116-->654-->105-->106
 
 搞清楚当前root节点该做什么？根据函数定义递归调用子节点！
 
@@ -22,3 +22,17 @@
   5.connectTwoNodes(n1.left, n1.right);
     connectTwoNodes(n2.left, n2.right);
     connectTwoNodes(n1.right, n2.left);
+
+654.最大二叉树
+  1.前序遍历确定
+  2.找到最大根节点root，并记录它的角标
+  3.root.left = buildMaximumBinaryTree(nums, start, index-1);
+    root.right = buildMaximumBinaryTree(nums, index+1, end);
+    
+105.106.前中后序构造二叉树
+  1.辅助函数build(int[] preorder, int pre_start, int pre_end, int[] inorder, int in_start, int in_end);
+  2.关键在于通过前序或者后序数组确定根节点
+  3.先序遍历确定
+  4.在中序数组找到根节点的Index
+  5.确定左子树数组和右子树数组，递归
+  6.输出root到主函数return build(preorder, 0, preorder.length-1, inorder, 0, inorder.length-1)；
