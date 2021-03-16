@@ -1,4 +1,4 @@
-226-->114-->116-->654-->105-->106
+226-->114-->116-->654-->105-->106-->104-->617
 
 搞清楚当前root节点该做什么？根据函数定义递归调用子节点！
 
@@ -36,3 +36,16 @@
   4.在中序数组找到根节点的Index
   5.确定左子树数组和右子树数组，递归
   6.输出root到主函数return build(preorder, 0, preorder.length-1, inorder, 0, inorder.length-1)；
+
+104.求树的最大深度
+  1.先序遍历确定
+  2.约束条件root==null,return 0
+  3.dfs(root.left) > dfs(root.right),return dfs(root.left)
+  
+617.合并二叉树
+  1.先序遍历确定
+  2.if(n1 == null || n2 == null) 
+      return (n1 == null) ? n2 : n1;
+  3.第二棵树归并到第一棵树，值相加
+  4.root.left = dfs(n1.left, n2.left); root.right = dfs(n1.right, n2.right);
+  
